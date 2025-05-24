@@ -41,7 +41,7 @@ namespace BusinessLogic
 
         public List<Product> GetProducts()
         {
-            var products = new List<Product>();
+            var products = manager.ReadProducts();
             return products;
         }
     }
