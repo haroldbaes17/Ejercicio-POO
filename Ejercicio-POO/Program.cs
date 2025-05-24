@@ -1,6 +1,10 @@
-﻿public class Program
+﻿using BusinessLogic;
+using Entities;
+
+public class Program
 {
-    public string void Main(string[] args)
+    ProductManager manager = new ProductManager();
+    public void Main(string[] args)
     {
         Console.WriteLine("Bienvenido al gestor de productos Dummy");
 
@@ -16,7 +20,7 @@
             switch (option)
             {
                 case 1:
-                    Console.WriteLine("Digite la informacion del producto a agregar");
+                    AddProduct();
                     break;
                 case 2:
                     Console.WriteLine("Listado de productos existentes");
@@ -29,5 +33,53 @@
                     break;
             }
         }
+    }
+
+    public void AddProduct()
+    {
+       try
+        {
+            Console.WriteLine("Digite la informacion del producto a agregar");
+            Console.Write("Ingrese el ID del producto");
+            int id = Int32.Parse(Console.ReadLine());
+
+            Console.Write("Ingrese el Nombre del producto");
+            string name = Console.ReadLine();
+
+            Console.Write("Ingrese el precio del producto");
+            double price = Double.Parse(Console.ReadLine());
+
+            Console.Write("Ingrese el stock del producto");
+            int stock = Int32.Parse(Console.ReadLine());
+
+            manager.AddProduct(id, name, price, stock);
+            Console.WriteLine("Producto agregado exitosamente");
+
+        } catch (Exception ex) 
+        {
+            Console.WriteLine($"Hubo un error. Intente de nuevo{ex.Message}");
+        }
+    }
+
+    public void GetProducts()
+    {
+        try
+        {
+            List<Product> productos = manager.GetProducts();
+
+            Console.WriteLine("Listado de Productos: ");
+            foreach (Product product in productos)
+            {
+                Console.WriteLine($"ID: {product.Id}");
+                Console.WriteLine($"Nombre: {product.Name}");
+                Console.WriteLine($"Precio: {product.Price}");
+                Console.WriteLine($"Stock: {product.Stock}");
+                Console.WriteLine("============================");
+            }
+        } catch (Exception ex)
+        {
+            Console.WriteLine($"Hubo un error: {ex.Message}");
+        }
+        
     }
 }

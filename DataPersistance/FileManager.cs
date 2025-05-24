@@ -10,6 +10,7 @@ namespace DataPersistance
 {
     public class FileManager
     {
+        string ruta = "productos.txt";
 
         // Metodo que retorna una lista de productos tomada del archivo de texto /.
         public List<Product> ReadProducts()
