@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataPersistance
 {
-    internal class FileManager
+    public class FileManager
     {
     }
 }
